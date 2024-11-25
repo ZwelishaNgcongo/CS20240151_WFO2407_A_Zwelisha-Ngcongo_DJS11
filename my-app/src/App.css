@@ -1,38 +1,265 @@
-.App {
-  text-align: center;
+
+/* globals.css */
+
+:root {
+  /* Color palette */
+  --primary: #2D3748;
+  --secondary: #4A5568;
+  --accent: #5A67D8;
+  --background: #F7FAFC;
+  --surface: #FFFFFF;
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --error: #E53E3E;
+  --success: #38A169;
+
+  /* Typography */
+  --font-heading: system-ui, -apple-system, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Layout Components */
+.layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.header {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerNav {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.footer {
+  background-color: var(--primary);
+  color: var(--surface);
+  padding: var(--spacing-xl);
+  margin-top: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Audio Components */
+.audioPlayer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-md);
+  z-index: 1000;
+}
+
+.audioControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.audioProgress {
+  flex-grow: 1;
+  height: 4px;
+  background-color: var(--secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.audioProgressBar {
+  height: 100%;
+  background-color: var(--accent);
+  border-radius: var(--radius-sm);
+  transition: width 0.1s linear;
+}
+
+/* Show Components */
+.showList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.showCard {
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.showCard:hover {
+  transform: translateY(-4px);
+}
+
+.showImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.showInfo {
+  padding: var(--spacing-md);
+}
+
+.genreFilter {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--secondary);
+}
+
+/* Episode Components */
+.episodeList {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.episodeCard {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--secondary);
+  cursor: pointer;
+}
+
+.episodeCard:hover {
+  background-color: var(--background);
+}
+
+/* Season Components */
+.seasonList {
+  padding: var(--spacing-lg);
+}
+
+.seasonCard {
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+/* Favorites Components */
+.favoritesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.favoriteCard {
+  position: relative;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.favoriteButton {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background-color: var(--surface);
+  border-radius: 50%;
+  padding: var(--spacing-xs);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.button {
+  background-color: var(--accent);
+  color: var(--surface);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .showList {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
-  to {
-    transform: rotate(360deg);
+
+  .episodeCard {
+    flex-direction: column;
+  }
+
+  .audioControls {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .showList {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    padding: var(--spacing-sm);
+  }
+
+  .audioPlayer {
+    padding: var(--spacing-sm);
   }
 }
