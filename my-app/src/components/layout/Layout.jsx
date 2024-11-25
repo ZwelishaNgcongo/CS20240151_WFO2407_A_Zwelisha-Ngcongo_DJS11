@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="app-layout">
+    <div className=/* "app-layout" */ "layout">
       <Header 
         onSortChange={handleSortChange}
         onGenreSelect={handleGenreSelect}

@@ -30,7 +30,7 @@ const Header = ({ onSortChange, onGenreSelect }) => {
 
   return (
     <header className="header">
-      <nav className="nav-container">
+      <nav className=/* "nav-container" */"headerNav">
         <div className="nav-left">
           <Link to="/" className="logo">
             PodcastHub
