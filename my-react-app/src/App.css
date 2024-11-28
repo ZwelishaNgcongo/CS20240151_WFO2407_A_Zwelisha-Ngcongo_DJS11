@@ -54,243 +54,79 @@ a:hover {
   font-size: 1.2em;
   color: #333; /* Dark text color */
 }
-* src/components/Favorites.css */
-
-.favorites {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-.favorites h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.favorites-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.favorite-card {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    transition: transform 0.2s;
-}
-
-.favorite-card:hover {
-    transform: translateY(-3px);
-}
-
-.favorite-card h2 {
-    font-size: 1.5em;
-    margin: 0 0 10px 0;
-}
-
-.favorite-card p {
-    margin: 5px 0;
-}
-
-.favorite-card button {
-    background: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    
-}
-
-.favorite-card button:hover {
-    background: #e63939;
-}
-
-.empty {
-    text-align: center;
-    font-size: 1.2em;
-    color: #666;
-}
-/* src/components/EpisodePlayer.css */
-
-.episode-player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  padding: 15px;
-  border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.episode-player audio {
-  width: 100%;
-}
-
-.episode-player button {
-  background: #007bff;
+nav {
+  background: #333;
   color: #fff;
-  border: none;
   padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
 }
 
-.episode-player button:hover {
-  background: #0056b3;
-}
-/* src/components/SeasonDetail.css */
-
-.season-detail {
-  margin-top: 20px;
+nav h1 {
+  display: inline;
 }
 
-.season-detail h3 {
-  font-size: 1.5em;
-  margin: 10px 0;
-}
-
-.episode-list {
-  list-style-type: none;
+nav ul {
+  list-style: none;
   padding: 0;
 }
 
-.episode-list li {
-  margin: 5px 0;
+nav ul li {
+  display: inline;
+  margin-right: 15px;
 }
 
-.episode-list button {
-  background: #007bff;
+nav a {
   color: #fff;
-  border: none;
+  text-decoration: none;
+}
+header {
+  background-color: #f8f9fa;
   padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-
 }
-
-.episode-list button:hover {
-  background: #0056b3;
-}
-/* src/components/ShowDetail.css */
-
-.show-detail {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.show-detail h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.show-detail img {
-  max-width: 100%;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.season-list {
-  margin-top: 20px;
-}
-
-.season {
-  margin-bottom: 15px;
-}
-
-.season h2 {
-  font-size: 1.5em;
-}
-/* src/components/GenreFilter.css */
-
-.genre-filter {
-  margin-bottom: 20px;
-}
-
-.genre-filter label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.genre-filter select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  font-size: 1em;
-}
-/* src/components/ShowList.css */
-
-.show-list {
+.app-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 20px;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1f2937;
+  color: #f3f4f6;
 }
 
-.show-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  width: calc(33.333% - 20px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+.app-header {
+  background-color: #111827;
+  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.show-card:hover {
-  transform: translateY(-5px);
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.show-card img {
-  max-width: 100%;
-  border-radius: 5px;
+.nav-item {
+  margin-right: 1.5rem;
 }
 
-.show-card h2 {
-  font-size: 1.5em;
-  margin: 10px 0;
+.nav-link {
+  color: #f3f4f6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.show-card p {
-  margin: 5px 0;
-}
-.header {
-  background-color: #3498db; /* Blue background */
-  color: white; /* White text */
-  padding: 15px; /* Padding for the header */
-  display: flex; /* Flexbox for layout */
-  justify-content: space-between; /* Space between logo and nav */
-  align-items: center; /* Center align items vertically */
+.nav-link:hover {
+  color: #9ca3af;
 }
 
-.logo {
-  font-size: 1.5em; /* Larger font size for the logo */
+.content-container {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
-.nav-links {
-  list-style: none; /* Remove bullet points from list */
-  display: flex; /* Flexbox for navigation links */
-  gap: 15px; /* Space between links */
-}
-
-.nav-links li {
-  display: inline; /* Inline display for list items */
-}
-
-.nav-links a {
-  color: white; /* White text for links */
-  text-decoration: none; /* Remove underline from links */
-  transition: color 0.3s; /* Smooth transition for hover effect */
-}
-
-.nav-links a:hover {
-  color: #ffcc00; /* Change color on hover */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
