@@ -1,22 +1,23 @@
-import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchShow } from '../utils/api'; // Import the fetchShow function
-import PlaybackControls from './PlaybackControls'; // Import PlaybackControls
+import { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { fetchShow } from "../utils/api";
+import { genreMapping } from "../context/GenreContext";
+import PlaybackControls from "./PlaybackControls";
 
 const PodcastDetails = () => {
-  const { id } = useParams(); // Get the podcast ID from the URL
+  const { id } = useParams();
   const [podcast, setPodcast] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const audioRef = useRef(null); // Create a ref for the audio element
+  const audioRef = useRef(null);
 
   useEffect(() => {
     const getPodcastDetails = async () => {
       try {
-        const data = await fetchShow(id); // Fetch podcast details using the ID
+        const data = await fetchShow(id);
         setPodcast(data);
       } catch (err) {
-        setError('Error fetching podcast details');
+        setError("Error fetching podcast details.");
         console.error(err);
       } finally {
         setLoading(false);
@@ -26,28 +27,49 @@ const PodcastDetails = () => {
     getPodcastDetails();
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Map genreIds to genre names using genreMapping
+  const getGenreNames = (genreIds) => {
+    if (!genreIds || genreIds.length === 0) return "No Genres Available";
+    return genreIds
+      .map((id) => genreMapping[id] || "Unknown Genre")
+      .join(", ");
+  };
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <p>Loading podcast details...</p>;
 
-  if (!podcast) {
-    return <div>No podcast found.</div>;
-  }
+  if (error) return <p>{error}</p>;
+
+  if (!podcast) return <p>No podcast found.</p>;
 
   return (
     <div className="podcast-details-container">
       <h1>{podcast.title}</h1>
-      <img src={podcast.image} alt={podcast.title} />
+      <img src={podcast.image} alt={podcast.title} className="podcast-image" />
       <p>{podcast.description}</p>
+      <p>
+        <strong>Genres:</strong> {getGenreNames(podcast.genreIds)}
+      </p>
+
+      {/* Display Seasons */}
+      {podcast.seasons && podcast.seasons.length > 0 && (
+        <div className="podcast-seasons">
+          <h3>Seasons:</h3>
+          <ul>
+            {podcast.seasons.map((season) => (
+              <li key={season.season}>
+                <strong>Season {season.season}:</strong> {season.title}
+                <p>Episodes: {season.episodes}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Audio Player */}
       <audio ref={audioRef} controls>
         <source src={podcast.audioUrl} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      {/* Use the PlaybackControls component here */}
       <PlaybackControls audioRef={audioRef} />
     </div>
   );
