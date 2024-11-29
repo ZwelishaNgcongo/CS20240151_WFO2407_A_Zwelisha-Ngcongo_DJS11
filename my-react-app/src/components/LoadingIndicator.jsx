@@ -1,5 +1,5 @@
 
-/* import './LoadingIndicator.css'; */ // Import the CSS for styling
+
 
 const LoadingIndicator = () => {
     return (

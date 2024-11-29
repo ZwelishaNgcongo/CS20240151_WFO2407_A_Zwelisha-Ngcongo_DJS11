@@ -28,11 +28,11 @@ const PlaybackControls = ({ audioRef }) => {
   );
 };
 
-// Prop validation
+/* Prop validation */
 PlaybackControls.propTypes = {
   audioRef: PropTypes.shape({
-    current: PropTypes.instanceOf(HTMLAudioElement), // Validate that current is an instance of HTMLAudioElement
-  }).isRequired, // Validate that audioRef is required
+    current: PropTypes.instanceOf(HTMLAudioElement), /* Validate that current is an instance of HTMLAudioElement */
+  }).isRequired, /* Validate that audioRef is required */
 };
 
 export default PlaybackControls;

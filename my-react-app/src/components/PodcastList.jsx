@@ -3,7 +3,7 @@ import { FavoritesContext } from "../context/FavoritesContext";
 import SearchBar from "./SearchBar";
 import useFetchPodcasts from "../hooks/useFetchPodcasts";
 
-// Static Genre Mapping (Hardcoded as instructed)
+ /* Static Genre Mapping (Hardcoded as instructed) */
 const genreMapping = {
   1: "Personal Growth",
   2: "Investigative Journalism",
@@ -17,23 +17,23 @@ const genreMapping = {
 };
 
 const PodcastList = () => {
-  const { addFavorite } = useContext(FavoritesContext); // Favorites functionality
-  const { podcasts, loading } = useFetchPodcasts(); // Fetch podcasts
+  const { addFavorite } = useContext(FavoritesContext);  /* Favorites functionality */
+  const { podcasts, loading } = useFetchPodcasts();  /* Fetch podcasts */
 
   const [filteredPodcasts, setFilteredPodcasts] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
   const [sortOption, setSortOption] = useState("alphabeticalAsc");
 
-  // Initialize filteredPodcasts with all podcasts
+   /* Initialize filteredPodcasts with all podcasts */
   useEffect(() => {
     setFilteredPodcasts(podcasts);
   }, [podcasts]);
 
-  // Filter podcasts based on the selected genre
+   /* Filter podcasts based on the selected genre */
   const handleFilter = (genreId) => {
     setSelectedGenre(genreId);
     if (!genreId) {
-      setFilteredPodcasts(podcasts); // Show all podcasts if no genre selected
+      setFilteredPodcasts(podcasts);  /* Show all podcasts if no genre selected */
     } else {
       const filtered = podcasts.filter((podcast) =>
         podcast.genreIds.includes(Number(genreId))
@@ -42,7 +42,7 @@ const PodcastList = () => {
     }
   };
 
-  // Search podcasts by title and filter by selected genre
+   /* Search podcasts by title and filter by selected genre */
   const handleSearch = (term) => {
     const filtered = podcasts.filter(
       (podcast) =>
@@ -54,7 +54,7 @@ const PodcastList = () => {
     setFilteredPodcasts(filtered);
   };
 
-  // Sort podcasts based on the selected sorting option
+  /* Sort podcasts based on the selected sorting option */
   const sortedPodcasts = useMemo(() => {
     let sorted = [...filteredPodcasts];
     switch (sortOption) {

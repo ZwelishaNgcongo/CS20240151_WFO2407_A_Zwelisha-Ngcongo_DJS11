@@ -27,7 +27,7 @@ const PodcastDetails = () => {
     getPodcastDetails();
   }, [id]);
 
-  // Map genreIds to genre names using genreMapping
+ /*  Map genreIds to genre names using genreMapping */
   const getGenreNames = (genreIds) => {
     if (!genreIds || genreIds.length === 0) return "No Genres Available";
     return genreIds

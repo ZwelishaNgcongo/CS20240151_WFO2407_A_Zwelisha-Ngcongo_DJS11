@@ -5,7 +5,7 @@ export const FavoritesContext = createContext();
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  // Load favorites from localStorage on initial render
+  /*  Load favorites from localStorage on initial render */
   useEffect(() => {
     const savedFavorites = localStorage.getItem('podcastFavorites');
     if (savedFavorites) {
@@ -13,17 +13,17 @@ export const FavoritesProvider = ({ children }) => {
     }
   }, []);
 
-  // Save favorites to localStorage whenever they change
+   /* Save favorites to localStorage whenever they change */
   useEffect(() => {
     localStorage.setItem('podcastFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
   const addFavorite = (podcast) => {
-    // Check if podcast is already in favorites
+    /*  Check if podcast is already in favorites */
     const exists = favorites.some(fav => fav.id === podcast.id);
     
     if (!exists) {
-      // Add dateAdded when adding to favorites
+      /* Add dateAdded when adding to favorites */
       const favoriteWithDate = {
         ...podcast,
         dateAdded: new Date().toISOString()
