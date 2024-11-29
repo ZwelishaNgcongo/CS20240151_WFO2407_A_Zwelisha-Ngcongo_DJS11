@@ -19,7 +19,7 @@ const PlaybackControls = ({ audioRef }) => {
   };
 
   return (
-    <div>
+    <div className="playback-controls-container">
       <button onClick={handlePlay}>Play</button>
       <button onClick={handlePause}>Pause</button>
       <button onClick={handleRewind}>Rewind 10s</button>

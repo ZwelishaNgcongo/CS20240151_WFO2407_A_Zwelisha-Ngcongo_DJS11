@@ -15,9 +15,9 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        placeholder="Search podcasts..."
+        placeholder="Search podcasts..." className="search-bar-input"
       />
-      <button type="submit">Search</button>
+      <button type="submit" className="search-bar-button">Search</button>
     </form>
   );
 };

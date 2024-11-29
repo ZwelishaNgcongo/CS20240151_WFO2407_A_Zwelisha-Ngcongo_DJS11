@@ -22,7 +22,7 @@ const Favorites = () => {
   }, [favorites, sortOption]);
 
   return (
-    <div>
+    <div className="favorites-container">
       <h2>My Favorites</h2>
       <select 
         value={sortOption} 
@@ -44,7 +44,7 @@ const Favorites = () => {
             <li key={podcast.id}>
               <img src={podcast.image} alt={podcast.title} style={{ width: '50px', marginRight: '10px' }} />
               <span>{podcast.title}</span>
-              <button onClick={() => removeFavorite(podcast.id)}>Remove</button>
+              <button onClick={() => removeFavorite(podcast.id)} className="favorites-remove-button">Remove</button>
             </li>
           ))}
         </ul>

@@ -62,11 +62,11 @@ const PodcastList = () => {
   }, {});
 
   return (
-    <div>
+    <div className="podcast-list-container">
       <h2>Podcasts</h2>
       <select 
         value={selectedGenre} 
-        onChange={(e) => handleFilter(e.target.value)}
+        onChange={(e) => handleFilter(e.target.value)}className="podcast-genre-select"
       >
         <option value="">All Genres</option>
         {genres.map((genre) => (
@@ -78,7 +78,7 @@ const PodcastList = () => {
       <SearchBar onSearch={handleSearch} />
       <select 
         value={sortOption} 
-        onChange={(e) => setSortOption(e.target.value)}
+        onChange={(e) => setSortOption(e.target.value)}className="podcast-genre-select"
       >
         <option value="alphabeticalAsc">A-Z</option>
         <option value="alphabeticalDesc">Z-A</option>
@@ -93,7 +93,7 @@ const PodcastList = () => {
             <p>Seasons: {podcast.seasons}</p>
             <p>Last Updated: {new Date(podcast.updated).toLocaleDateString()}</p>
             <p>Genres: {podcast.genres.map(id => genreMapping[id]).join(', ')}</p>
-            <button onClick={() => addFavorite(podcast)}>
+            <button onClick={() => addFavorite(podcast)}  className="podcast-add-favorite-button">
               Add to Favorites
             </button>
           </li>
