@@ -1,43 +1,49 @@
-import  { createContext,useEffect, useState } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
+import React, { createContext, useState, useEffect } from 'react';
 
 export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState(() => {
-    const savedFavorites = localStorage.getItem('favorites');
-    return savedFavorites ? JSON.parse(savedFavorites) : [];
-  });
+  const [favorites, setFavorites] = useState([]);
 
+  // Load favorites from localStorage on initial render
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    const savedFavorites = localStorage.getItem('podcastFavorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  // Save favorites to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('podcastFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  const addFavorite = (episode) => {
-    const newFavorite = {
-      ...episode,
-      dateAdded: new Date().toISOString()
-    };
-    setFavorites((prev) => [...prev, newFavorite]);
+  const addFavorite = (podcast) => {
+    // Check if podcast is already in favorites
+    const exists = favorites.some(fav => fav.id === podcast.id);
+    
+    if (!exists) {
+      // Add dateAdded when adding to favorites
+      const favoriteWithDate = {
+        ...podcast,
+        dateAdded: new Date().toISOString()
+      };
+      
+      setFavorites([...favorites, favoriteWithDate]);
+    }
   };
 
-  const removeFavorite = (id) => {
-    setFavorites((prev) => prev.filter((episode) => episode.id !== id));
+  const removeFavorite = (podcastId) => {
+    setFavorites(favorites.filter(podcast => podcast.id !== podcastId));
   };
+
   return (
     <FavoritesContext.Provider value={{ 
       favorites, 
       addFavorite, 
-      removeFavorite,
-      clearFavorites: () => {
-        setFavorites([]);
-        localStorage.removeItem('favorites');
-      }
+      removeFavorite 
     }}>
       {children}
     </FavoritesContext.Provider>
   );
-};
-FavoritesProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Validate that children is a required node
 };
