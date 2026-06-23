@@ -1,8 +1,16 @@
-import { genreMapping } from "../context/GenreContext";
+// src/components/GenreFilter.jsx
 
-const GenreFilter = ({ onFilterChange }) => {
+import PropTypes from 'prop-types';
+import { genreMapping } from '../data/genres';
+
+const GenreFilter = ({ value, onChange }) => {
   return (
-    <select onChange={(e) => onFilterChange(e.target.value)}>
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="podcast-genre-select"
+      aria-label="Filter by genre"
+    >
       <option value="">All Genres</option>
       {Object.entries(genreMapping).map(([id, name]) => (
         <option key={id} value={id}>
@@ -11,6 +19,11 @@ const GenreFilter = ({ onFilterChange }) => {
       ))}
     </select>
   );
+};
+
+GenreFilter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default GenreFilter;

@@ -1,29 +1,23 @@
-import { useState } from 'react';
+// src/components/SearchBar.jsx
+
 import PropTypes from 'prop-types';
 
-const SearchBar = ({ onSearch }) => {
-  const [term, setTerm] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(term);
-  };
-
+const SearchBar = ({ value, onChange }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={term}
-        onChange={(e) => setTerm(e.target.value)}
-        placeholder="Search podcasts..." className="search-bar-input"
-      />
-      <button type="submit" className="search-bar-button">Search</button>
-    </form>
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder="Search podcasts by title..."
+      className="search-bar-input"
+      aria-label="Search podcasts"
+    />
   );
 };
 
 SearchBar.propTypes = {
-  onSearch: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
