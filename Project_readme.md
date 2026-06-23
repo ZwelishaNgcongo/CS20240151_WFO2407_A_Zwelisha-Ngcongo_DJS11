@@ -137,5 +137,4 @@ Contact
 Zwelisha Ngcongo- zwelisha.ngcongo@gmail.com
 Project Link: https://github.com/ZwelishaNgcongo/CS20240151_WFO2407_A_Zwelisha-Ngcongo_DJS11
 
-netlify link :https://cs20240151-wfo2407-a-zwelisha-ngcongo.netlify.app
 
